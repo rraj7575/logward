@@ -1,0 +1,90 @@
+import { Meta, Canvas, Story, ArgsTable } from '@storybook/addon-docs';
+
+import { InlineCluster } from '@bedrock-layout/inline-cluster';
+
+import { Toast } from './Toast';
+import { Button } from '../Button';
+import { toasts } from './toasts';
+
+<Meta
+  title="Base/Toast"
+  component={Toast}
+  argTypes={{
+    type: {
+      name: 'type',
+      options: ['info', 'success', 'warning', 'error'],
+      control: {
+        type: 'select',
+      },
+      defaultValue: 'success',
+    },
+  }}
+/>
+
+export const Template = (args) => (
+  <div style={{ width: '408px' }}>
+    <Toast {...args} />
+  </div>
+);
+
+export const TemplateTriggers = (args) => (
+  <InlineCluster gutter={11}>
+    <Button
+      appearance="filled"
+      onClick={() => {
+        toasts.success("It's all well");
+      }}
+    >
+      Success
+    </Button>
+    <Button
+      appearance="filled"
+      onClick={() => {
+        toasts.warning("It's slightly not well");
+      }}
+    >
+      Warning
+    </Button>
+    <Button
+      appearance="filled"
+      onClick={() => {
+        toasts.error("It's completely wrong");
+      }}
+    >
+      Error
+    </Button>
+    <Button
+      appearance="filled"
+      onClick={() => {
+        toasts.info("It's okay");
+      }}
+    >
+      Info
+    </Button>
+  </InlineCluster>
+);
+
+# Toast
+
+Toast description here
+
+```tsx
+<Toast text="It's all well!!" type="success" />
+```
+
+<Canvas>
+  <Story
+    name="Toast"
+    args={{
+      message: "It's all well!",
+      type: 'success',
+      onDismiss: () => {},
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+<Canvas>
+  <Story name="Toast with Triggers">{TemplateTriggers.bind({})}</Story>
+</Canvas>

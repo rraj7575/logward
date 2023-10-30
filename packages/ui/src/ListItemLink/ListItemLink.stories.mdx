@@ -1,0 +1,28 @@
+import { Meta, Canvas, Story, ArgsTable } from '@storybook/addon-docs';
+
+import { ListItemLink } from './ListItemLink';
+
+<Meta title="Base/ListItemLink" component={ListItemLink} />
+
+export const Template = (args) => <ListItemLink {...args}>Home</ListItemLink>;
+
+# ListItemLink
+
+ListItemLink description here
+
+```tsx
+<ListItemLink label="ListItemLink" />
+```
+
+<Canvas>
+  <Story
+    name="ListItemLink"
+    args={{
+      to: '/home',
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+<ArgsTable story="ListItemLink" />

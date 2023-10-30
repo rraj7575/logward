@@ -1,0 +1,93 @@
+import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs';
+import { PadBox } from '@bedrock-layout/primitives';
+
+import { JsonEditor, OutputPanel } from 'ui';
+
+<Meta title="Base/OutputPanel" component={OutputPanel} />
+
+export const Template = (args) => {
+  const json = JSON.stringify({
+    users: {
+      name: 'users',
+      columns: [
+        {
+          name: 'id',
+          type: 'integer',
+        },
+        {
+          name: 'name',
+          type: 'string',
+        },
+        {
+          name: 'email',
+          type: 'string',
+        },
+      ],
+    },
+  }, null, 2);
+  return (
+    <OutputPanel
+      executionTime="1s"
+      isSuccess
+      headingName="Response Json"
+      textToCopy={json}
+      {...args}
+    >
+      <PadBox style={{ height: '40rem' }}>
+        <JsonEditor readOnly defaultValue={json} />
+      </PadBox>
+    </OutputPanel>
+  );
+};
+
+export const TemplateJson = (args) => {
+  const json = JSON.stringify({
+    users: {
+      name: 'users',
+      columns: [
+        {
+          name: 'id',
+          type: 'integer',
+        },
+        {
+          name: 'name',
+          type: 'string',
+        },
+        {
+          name: 'email',
+          type: 'string',
+        },
+      ],
+    },
+  }, null, 2);
+  return (
+    <OutputPanel
+      executionTime="10s"
+      isSuccess
+      headingName="Response Json"
+      textToCopy={json}
+      {...args}
+    >
+      <pre style={{ background: 'wheat' }}><PadBox padding="1rem">{json}</PadBox></pre>
+    </OutputPanel>
+  )
+    ;
+};
+
+# OutputPanel
+
+OutputPanel description
+
+```tsx
+<OutputPanel label="OutputPanel" />
+```
+
+<Canvas>
+  <Story name="OutputPanel">{Template.bind({})}</Story>
+</Canvas>
+
+<Canvas>
+  <Story name="OutputPanelJson">{TemplateJson.bind({})}</Story>
+</Canvas>
+
+<ArgsTable story="OutputPanel" />

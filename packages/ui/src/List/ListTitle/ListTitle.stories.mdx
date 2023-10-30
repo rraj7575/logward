@@ -1,0 +1,28 @@
+import { Meta, Canvas, Story, ArgsTable } from '@storybook/addon-docs';
+
+import { ListTitle } from './ListTitle';
+
+<Meta title="Base/ListTitle" component={ListTitle} />
+
+export const Template = (args) => <ListTitle {...args} />;
+
+# ListTitle
+
+ListTitle description here
+
+```tsx
+<ListTitle label="ListTitle" />
+```
+
+<Canvas>
+  <Story
+    name="ListTitle"
+    args={{
+      text: 'Features',
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+<ArgsTable story="ListTitle" />

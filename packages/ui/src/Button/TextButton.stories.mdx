@@ -1,0 +1,51 @@
+import { Canvas, Meta, Story, ArgsTable } from '@storybook/addon-docs';
+import { InlineCluster } from '@bedrock-layout/inline-cluster';
+
+import { TextButton } from './TextButton';
+
+<Meta title="Base/TextButton" component={TextButton} />
+
+export const TemplatePrimary = () => (
+  <TextButton>Primary Text Button</TextButton>
+);
+
+export const TemplateSecondary = () => (
+  <TextButton appearance="secondary" bold={false}>
+    Secondary Text Button
+  </TextButton>
+);
+
+export const TemplateMultipleText = () => (
+  <InlineCluster gutter="2rem">
+    <TextButton>Edit</TextButton>
+    <TextButton>Delete</TextButton>
+  </InlineCluster>
+);
+
+# Text Button
+
+Text Button description
+
+```tsx
+<TextButton />
+```
+
+### Text Button Primary
+
+<Canvas>
+  <Story name="TextButtonPrimary">{TemplatePrimary.bind({})}</Story>
+</Canvas>
+
+<ArgsTable story="TextButtonPrimary" />
+
+### Text Button Secondary
+
+<Canvas>
+  <Story name="TextButtonSecondary">{TemplateSecondary.bind({})}</Story>
+</Canvas>
+
+### Multiple Text Button
+
+<Canvas>
+  <Story name="MultipleTextButtons">{TemplateMultipleText.bind({})}</Story>
+</Canvas>

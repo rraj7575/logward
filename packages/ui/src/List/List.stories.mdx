@@ -1,0 +1,87 @@
+import { Meta, Canvas, Story, ArgsTable } from '@storybook/addon-docs';
+
+import { List } from './List';
+import { HiTemplate } from 'react-icons/hi';
+
+import { ListItem } from '../ListItem';
+import { ListItemIcon } from '../ListItemIcon';
+import { ListItemLink } from '../ListItemLink';
+
+<Meta title="Base/List" component={List} />
+
+export const Template = (args) => (
+  <List {...args}>
+    <ListItem {...args}>
+      <ListItemIcon icon={<HiTemplate />} />
+      <ListItemLink to="/rule">Rules</ListItemLink>
+    </ListItem>
+    <ListItem {...args} active>
+      <ListItemIcon icon={<HiTemplate />} />
+      <ListItemLink to="/workflows">Workflows</ListItemLink>
+    </ListItem>
+    <ListItem {...args}>
+      <ListItemIcon icon={<HiTemplate />} />
+      <ListItemLink to="/segments">Segments</ListItemLink>
+    </ListItem>
+  </List>
+);
+
+export const MultipleListsTemplate = (args) =>
+  ['Features', 'Security'].map((title) => {
+    if (title === 'Features') {
+      return (
+        <List {...args} title={title}>
+          <ListItem {...args}>
+            <ListItemIcon icon={<HiTemplate />} />
+            <ListItemLink to="/rule">Rules</ListItemLink>
+          </ListItem>
+          <ListItem {...args}>
+            <ListItemIcon icon={<HiTemplate />} />
+            <ListItemLink to="/workflows">Workflows</ListItemLink>
+          </ListItem>
+          <ListItem {...args}>
+            <ListItemIcon icon={<HiTemplate />} />
+            <ListItemLink to="/segments">Segments</ListItemLink>
+          </ListItem>
+        </List>
+      );
+    } else {
+      return (
+        <List {...args} title={title}>
+          <ListItem {...args} active>
+            <ListItemIcon icon={<HiTemplate />} />
+            <ListItemLink to="/credentials">Credentials</ListItemLink>
+          </ListItem>
+          <ListItem {...args}>
+            <ListItemIcon icon={<HiTemplate />} />
+            <ListItemLink to="/on-premise-agent">On-Premise Agent</ListItemLink>
+          </ListItem>
+        </List>
+      );
+    }
+  });
+
+# List
+
+List description here
+
+```tsx
+<List label="List" />
+```
+
+<Canvas>
+  <Story
+    name="Single List"
+    args={{
+      title: 'Features',
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+<Canvas>
+  <Story name="Multiple Lists">{MultipleListsTemplate.bind({})}</Story>
+</Canvas>
+
+<ArgsTable story="Single List" />

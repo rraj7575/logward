@@ -1,0 +1,27 @@
+import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs';
+import { useForm } from 'react-hook-form';
+
+import { PhoneNumberField } from 'ui';
+
+<Meta title="Forms/Fields/PhoneNumberField" component={PhoneNumberField} />
+
+export const Template = (args) => {
+  const { control } = useForm();
+  return (
+    <PhoneNumberField control={control} name="phone" country="in" {...args} />
+  );
+};
+
+# PhoneNumberField
+
+PhoneNumberField description
+
+```tsx
+<PhoneNumberField label="PhoneNumberField" />
+```
+
+<Canvas>
+  <Story name="PhoneNumberField">{Template.bind({})}</Story>
+</Canvas>
+
+<ArgsTable story="PhoneNumberField" />

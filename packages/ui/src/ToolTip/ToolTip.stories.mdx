@@ -1,0 +1,59 @@
+import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs';
+import { ThemeProvider } from 'styled-components';
+import { Inline } from '@bedrock-layout/inline';
+
+import { Button } from '../Button';
+import { ToolTip } from './ToolTip';
+
+<Meta
+  title="Base/ToolTip"
+  component={ToolTip}
+  argTypes={{
+    size: {
+      name: 'size',
+      options: ['small', 'medium', 'large'],
+      control: {
+        type: 'select',
+      },
+      defaultValue: 'small',
+    },
+  }}
+/>
+
+export const Template = () => {
+  return (
+    <Inline gutter="5rem" justify="center" style={{ height: '200px' }}>
+      <ToolTip message="This is medium size tooltip, it is defaulf if size is not passed.">
+        <Button>Small Size ToolTip</Button>
+      </ToolTip>
+      <ToolTip
+        message="This is medium size tooltip, To get medium size tooltip we have to pass prop of size as medium."
+        size="medium"
+      >
+        <Button>Medium Size ToolTip</Button>
+      </ToolTip>
+      <ToolTip
+        message="This is large size tooltip, To get large size tooltip we have to pass prop of size as large."
+        size="large"
+      >
+        <Button>Large Size ToolTip</Button>
+      </ToolTip>
+    </Inline>
+  );
+};
+
+# ToolTip
+
+ToolTip description here
+
+```tsx
+<ToolTip label="ToolTip" />
+```
+
+### Tooltip of small size (Default)
+
+<Canvas>
+  <Story name="ToolTip">{Template.bind({})}</Story>
+</Canvas>
+
+<ArgsTable story="ToolTip" />

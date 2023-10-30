@@ -1,0 +1,100 @@
+import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs';
+import { InlineCluster } from '@bedrock-layout/inline-cluster';
+
+import { Button } from './Button';
+
+<Meta
+  title="Base/Button"
+  component={Button}
+  argTypes={{
+    appearance: {
+      name: 'appearance',
+      options: ['contained', 'bordered', 'filled', 'text', 'neutral', 'bordered-black', 'danger'],
+      control: {
+        type: 'select',
+      },
+      defaultValue: 'contained',
+    },
+    size: {
+      name: 'size',
+      options: ['small', 'medium', 'large'],
+      control: {
+        type: 'select',
+      },
+      defaultValue: 'medium',
+    },
+  }}
+/>
+
+export const Template = (args) => <Button {...args} />;
+
+# Button
+
+Button description here
+
+```tsx
+<Button label="Button" />
+```
+
+<Canvas>
+  <Story
+    name="Button"
+    args={{
+      label: 'Button',
+      children: 'Button',
+      appearance: 'contained',
+      size: 'medium',
+      disabled: false,
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+<ArgsTable story="Button" />
+
+Button appearance
+
+```tsx
+<Button appearance="contained" />
+```
+
+export const TemplateVariants = () => (
+  <InlineCluster gutter={11}>
+    <Button appearance="contained">Contained</Button>
+    <Button appearance="bordered">Bordered</Button>
+    <Button appearance="filled">Filled</Button>
+    <Button appearance="text">Text</Button>
+  </InlineCluster>
+);
+
+<Canvas>
+  <Story name="Appearance">{TemplateVariants.bind({})}</Story>
+</Canvas>
+
+Button disabled
+
+```tsx
+<Button disabled="true" />
+```
+
+export const TemplateDisabled = () => (
+  <InlineCluster gutter={11}>
+    <Button appearance="contained" disabled>
+      Contained
+    </Button>
+    <Button appearance="bordered" disabled>
+      Bordered
+    </Button>
+    <Button appearance="filled" disabled>
+      Filled
+    </Button>
+    <Button appearance="text" disabled>
+      Text
+    </Button>
+  </InlineCluster>
+);
+
+<Canvas>
+  <Story name="Disabled">{TemplateDisabled.bind({})}</Story>
+</Canvas>

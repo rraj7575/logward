@@ -1,0 +1,26 @@
+import { Canvas, Meta, Story } from '@storybook/addon-docs';
+import { HiTemplate } from 'react-icons/hi';
+
+import { Expander } from './Expander';
+
+<Meta title="Base/Expander" component={Expander} />
+
+export const Template = (args) => (
+  <div>
+    <Expander title="Hello">
+      <div>Hey I'm collapsable</div>
+    </Expander>
+  </div>
+);
+
+# Collapsible Container
+
+Collapsible Container description here
+
+```tsx
+<Expander />
+```
+
+<Canvas>
+  <Story name="Collapsible Container">{Template.bind({})}</Story>
+</Canvas>

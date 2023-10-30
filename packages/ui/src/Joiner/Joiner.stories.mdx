@@ -1,0 +1,54 @@
+import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs';
+
+import { Joiner } from './Joiner';
+import { Typography } from '../Typography';
+
+<Meta title="Base/Joiner" component={Joiner} />
+
+export const TemplateInline = (args) => {
+  return (
+    <Joiner {...args}>
+      <Typography element="span">Manvendra Singh</Typography>
+      <Typography element="span">Keychron K8 Pro</Typography>
+      <Typography element="span">Logitech MX 3S</Typography>
+    </Joiner>
+  );
+};
+
+export const TemplateBlock = () => {
+  return (
+    <Joiner isBlock>
+      <Typography element="span">Manvendra Singh</Typography>
+      <Typography element="span">Keychron K8 Pro</Typography>
+      <Typography element="span">Logitech MX 3S</Typography>
+    </Joiner>
+  );
+};
+
+# Joiner
+
+`Joiner` component joins multiple React elements using a delimiter which by default is a comma `,`.
+
+```tsx
+<Joiner>
+  <Typography element="span">Manvendra Singh</Typography>
+  <Typography element="span">Keychron K8 Pro</Typography>
+  <Typography element="span">Logitech MX 3S</Typography>
+</Joiner>
+```
+
+### Inline Joiner
+
+<Canvas>
+  <Story name="JoinerInline" args={{
+    isBlock: false
+  }}>{TemplateInline.bind({})}</Story>
+</Canvas>
+
+<ArgsTable story="JoinerInline" />
+
+### Block Joiner
+<Canvas>
+  <Story name="JoinerBlock">{TemplateBlock.bind({})}</Story>
+</Canvas>
+

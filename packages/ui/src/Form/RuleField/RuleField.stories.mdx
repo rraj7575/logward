@@ -1,0 +1,39 @@
+import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs';
+import { useForm } from 'react-hook-form';
+import { Inline } from '@bedrock-layout/inline';
+
+import { rules } from '../fixtures/rules';
+import { RuleField } from 'ui';
+
+<Meta title="Forms/Fields/RuleField" component={RuleField} />
+
+export const Template = (args) => {
+  const { control } = useForm();
+  return (
+    <Inline>
+      <RuleField control={control} {...args} />
+    </Inline>
+  );
+};
+
+# RuleField
+
+RuleField description here
+
+```tsx
+<RuleField label="RuleField" />
+```
+
+<Canvas>
+  <Story
+    name="RuleField"
+    args={{
+      name: 'Rulepopover',
+      options: rules,
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+<ArgsTable story="RuleField" />

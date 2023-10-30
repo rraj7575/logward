@@ -1,0 +1,39 @@
+import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs';
+import { useForm } from 'react-hook-form';
+import { Inline } from '@bedrock-layout/inline';
+
+import { rules } from '../fixtures/rules';
+import { OperatorField } from 'ui';
+
+<Meta title="Forms/Fields/OperatorField" component={OperatorField} />
+
+export const Template = (args) => {
+  const { control } = useForm();
+  return (
+    <Inline>
+      <OperatorField control={control} {...args} />
+    </Inline>
+  );
+};
+
+# OperatorField
+
+OperatorField description here
+
+```tsx
+<OperatorField label="OperatorField" />
+```
+
+<Canvas>
+  <Story
+    name="OperatorField"
+    args={{
+      name: 'Operatorpopover',
+      options: rules,
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+<ArgsTable story="OperatorField" />

@@ -1,0 +1,50 @@
+import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs';
+import { ThemeProvider } from 'styled-components';
+import { Inline } from '@bedrock-layout/inline';
+
+import { Button } from '../Button';
+import { Spinner } from './Spinner';
+
+<Meta
+  title="Base/Spinner"
+  component={Spinner}
+  argTypes={{
+    size: {
+      name: 'size',
+      options: ['extraSmall', 'small', 'medium', 'large'],
+      control: {
+        type: 'select',
+      },
+      defaultValue: 'small',
+    },
+  }}
+/>
+
+export const Template = (args) => {
+  return (
+    <Inline
+      gutter="5rem"
+      justify="center"
+      align="center"
+      style={{ height: '200px' }}
+    >
+      <Spinner {...args} />
+    </Inline>
+  );
+};
+
+# Spinner
+
+Spinner description here
+
+```tsx
+<Spinner label="Spinner" />
+```
+
+### Spinner of small size (Default)
+
+<Canvas>
+  <Story name="Spinner">{Template.bind({})}</Story>
+</Canvas>
+
+<ArgsTable story="Spinner" />

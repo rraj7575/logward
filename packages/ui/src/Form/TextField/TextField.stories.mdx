@@ -1,0 +1,38 @@
+import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs';
+import { useForm } from 'react-hook-form';
+
+import { TextField } from 'ui';
+
+<Meta title="Forms/Fields/TextField" component={TextField} />
+
+export const Template = (args) => {
+  const { control } = useForm();
+  return (
+    <div style={{ width: '400px' }}>
+      <TextField control={control} {...args} />
+    </div>
+  );
+};
+
+# TextField
+
+TextField description here
+
+```tsx
+<TextField label="TextField" />
+```
+
+<Canvas>
+  <Story
+    name="TextField"
+    args={{
+      placeholder: 'Type here...',
+      hasInputIcon: true,
+      name: 'Email',
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+<ArgsTable story="TextField" />

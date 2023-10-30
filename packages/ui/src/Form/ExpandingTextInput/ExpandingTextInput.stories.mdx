@@ -1,0 +1,21 @@
+import { Canvas, Meta, Story } from '@storybook/addon-docs';
+import { useState } from 'react';
+import { ExpandingTextInput } from './ExpandingTextInput';
+
+<Meta title="Forms/Input/ExpandingTextInput" component={ExpandingTextInput} />
+
+export const Template = (args) => {
+  return <ExpandingTextInput {...args} />;
+};
+
+# Expanding Text Input
+
+Expanding Text Input description here
+
+```tsx
+<ExpandingTextInput />
+```
+
+<Canvas>
+  <Story name="ExpandingTextInput">{Template.bind({})}</Story>
+</Canvas>

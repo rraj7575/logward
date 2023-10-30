@@ -1,0 +1,50 @@
+import { Meta, Canvas, Story, ArgsTable } from '@storybook/addon-docs';
+
+import { RulePopover } from './RulePopover';
+import { PopoverPanel } from '../../Popover';
+import { Button } from '../../Button';
+import { dataset } from '../fixtures/dataset';
+
+<Meta title="Base/RulePopover" component={RulePopover} />
+
+export const Template = (args) => {
+  return (
+    <div
+      style={{
+        height: 600,
+        display: 'flex',
+        justifyContent: 'start',
+        alignItems: 'center',
+        flexDirection: 'column',
+      }}
+    >
+      <PopoverPanel trigger="click">
+        <RulePopover {...args} />
+      </PopoverPanel>
+    </div>
+  );
+};
+
+# RulePopover
+
+RulePopover description here
+
+```tsx
+<RulePopover label="RulePopover" />
+```
+
+<Canvas>
+  <Story
+    name="RulePopover"
+    args={{
+      dataset: dataset,
+      onClick: ({value, node}) => {
+        console.log(value, node);
+      },
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+<ArgsTable story="RulePopover" />

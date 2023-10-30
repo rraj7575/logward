@@ -1,0 +1,113 @@
+import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs';
+import { InlineCluster } from '@bedrock-layout/inline-cluster';
+import { Modal } from './Modal';
+import { Button } from '../Button';
+import { useLayer } from '../Layer/LayerProvider';
+
+<Meta
+  title="Base/Modal"
+  component={Modal}
+  argTypes={{
+    size: {
+      name: 'size',
+      options: ['small', 'medium', 'large', 'extraLarge'],
+      control: {
+        type: 'select',
+      },
+      defaultValue: 'lg',
+    },
+  }}
+/>
+
+export const Template = (args) => {
+  return (
+    <div style={{ height: '300px' }}>
+      <Modal {...args} />
+    </div>
+  );
+};
+
+export const TemplateTriggers = (args) => {
+  const { open: openSmallModal } = useLayer(
+    <Modal size="small" title="Small">
+      Small
+    </Modal>
+  );
+  const { open: openMediumModal } = useLayer(
+    <Modal size="medium" title="Medium">
+      Medium
+    </Modal>
+  );
+  const { open: openLargeModal } = useLayer(
+    <Modal size="large" title="Large">
+      Large
+    </Modal>
+  );
+  const { open: openExtraLargeModal } = useLayer(
+    <Modal size="extraLarge" title="Extra Large">
+      Extra Large
+    </Modal>
+  );
+  return (
+    <InlineCluster gutter={11}>
+      <Button
+        appearance="filled"
+        onClick={() => {
+          openSmallModal();
+        }}
+      >
+        Small
+      </Button>
+      <Button
+        appearance="filled"
+        onClick={() => {
+          openMediumModal();
+        }}
+      >
+        Medium
+      </Button>
+      <Button
+        appearance="filled"
+        onClick={() => {
+          openLargeModal();
+        }}
+      >
+        Large
+      </Button>
+      <Button
+        appearance="filled"
+        onClick={() => {
+          openExtraLargeModal();
+        }}
+      >
+        Extra Large
+      </Button>
+    </InlineCluster>
+  );
+};
+
+# Modal
+
+Modal description here
+
+```tsx
+<Modal label="Modal" />
+```
+
+<Canvas>
+  <Story
+    name="Modal"
+    args={{
+      children: <div>Modal content</div>,
+      size: 'large',
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+<Canvas>
+  <Story name="Modal with Triggers">{TemplateTriggers.bind({})}</Story>
+</Canvas>
+
+<ArgsTable story="Modal" />

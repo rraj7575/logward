@@ -1,0 +1,50 @@
+import { Meta, Canvas, Story, ArgsTable } from '@storybook/addon-docs';
+
+import { OperatorsPopover } from './OperatorsPopover';
+import { PopoverPanel } from '../../Popover';
+import { Button } from '../../Button';
+import { operators } from '../fixtures/operators';
+
+<Meta title="Base/OperatorsPopover" component={OperatorsPopover} />
+
+export const Template = (args) => {
+  return (
+    <div
+      style={{
+        height: 600,
+        display: 'flex',
+        justifyContent: 'start',
+        alignItems: 'center',
+        flexDirection: 'column',
+      }}
+    >
+      <PopoverPanel trigger="click">
+        <OperatorsPopover {...args} />
+      </PopoverPanel>
+    </div>
+  );
+};
+
+# OperatorsPopover
+
+OperatorsPopover description here
+
+```tsx
+<OperatorsPopover label="OperatorsPopover" />
+```
+
+<Canvas>
+  <Story
+    name="OperatorsPopover"
+    args={{
+      operators: operators,
+      onClick: ({value, type, lhs, rhs}) => {
+        console.log(value, type, lhs, rhs);
+      },
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+<ArgsTable story="OperatorsPopover" />

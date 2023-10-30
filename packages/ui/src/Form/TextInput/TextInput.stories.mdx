@@ -1,0 +1,38 @@
+import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs';
+
+import { TextInput } from 'ui';
+
+<Meta title="Forms/Input/TextInput" component={TextInput} />
+
+export const Template = (args) => {
+  return (
+    <div style={{ width: '400px' }}>
+      <TextInput {...args} />
+    </div>
+  );
+};
+
+# TextInput
+
+TextInput description here
+
+```tsx
+<TextInput label="TextInput" />
+```
+
+<Canvas>
+  <Story
+    name="TextInput"
+    args={{
+      onChange: () => {},
+      placeholder: 'Type here...',
+      value: '',
+      hasError: true,
+      hasInputIcon: true,
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+<ArgsTable story="TextInput" />
