@@ -1,11 +1,9 @@
-import { Button } from "ui";
+import { Comments } from "./components/Comments";
 
-function App() {
+export default function App() {
   return (
-    <>
-      <Button> my button</Button>
-    </>
+    <div>
+      <Comments />
+    </div>
   );
 }
-
-export default App;

@@ -21,7 +21,6 @@ export function Field({
   widthFull = false,
 }: FieldPropsType) {
   const errorMessage = fieldState.error?.message;
-
   return (
     <FieldStyled
       gutter="0.5rem"

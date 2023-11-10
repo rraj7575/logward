@@ -17,5 +17,11 @@
   "workspaces": [
     "apps/*",
     "packages/*"
-  ]
+  ],
+  "dependencies": {
+    "@bedrock-layout/primitives": "^3.0.12",
+    "lodash": "^4.17.21",
+    "react-hook-form": "^7.41.5",
+    "styled-components": "^5.3.6"
+  }
 }
