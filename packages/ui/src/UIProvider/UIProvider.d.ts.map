@@ -1,0 +1,1 @@
+{"version":3,"file":"UIProvider.d.ts","sourceRoot":"","sources":["UIProvider.tsx"],"names":[],"mappings":"AAAA,OAAO,gDAAgD,CAAC;AACxD,OAAO,EAAE,SAAS,EAAE,MAAM,OAAO,CAAC;AAMlC,MAAM,MAAM,eAAe,GAAG;IAC5B,QAAQ,EAAE,SAAS,CAAC;CACrB,CAAC;AAEF,wBAAgB,UAAU,CAAC,EAAE,QAAQ,EAAE,EAAE,eAAe,2CAQvD"}
