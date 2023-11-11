@@ -1,4 +1,4 @@
-import type { CommentDetails, CommentType } from "../components/types";
+import type { CommentDetails, CommentType } from "../components/comments/types";
 
 export const useComment = () => {
   const addComment = (

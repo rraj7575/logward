@@ -1,9 +1,9 @@
-import { Comments } from "./components/Comments";
+import Comments from "./components/comments";
 
 export default function App() {
   return (
-    <div>
+    <>
       <Comments />
-    </div>
+    </>
   );
 }

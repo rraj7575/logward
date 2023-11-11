@@ -1,8 +1,8 @@
 import { Stack } from "@bedrock-layout/primitives";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
-import { Button, TextField, Typography } from "ui";
-import { AddCommentContainer, ButtonContainer } from "./Comment.styled";
+import { Button, TextAreaField, TextField, Typography } from "ui";
+import { AddCommentContainer, ButtonContainer } from "./Index.styled";
 import { MODE } from "./constant";
 import type { CommentType } from "./types";
 
@@ -51,11 +51,10 @@ export function AddOrUpdateComment({
             />
           )}
 
-          <TextField
+          <TextAreaField
             control={control}
             placeholder="comment"
             name="comment"
-            showErrorIcon={false}
             rules={{ required: "This is required." }}
           />
 

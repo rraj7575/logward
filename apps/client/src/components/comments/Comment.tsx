@@ -7,11 +7,12 @@ import {
   DeleteButtonContainer,
   EditButtonContainer,
   NameAndDateContainer,
-} from "./Comment.styled";
+} from "./Index.styled";
 import { AiFillDelete } from "react-icons/ai";
 import { MODE } from "./constant";
 
 import type { CommentDetails, CommentType } from "./types";
+import { Stack } from "@bedrock-layout/primitives";
 
 export type CommentProps = {
   commentDetails: CommentDetails;
@@ -36,35 +37,39 @@ export function Comment({
   return (
     <>
       <CommentContainer>
-        <NameAndDateContainer>
-          <Typography name="heading3">{name}</Typography>
+        <Stack gutter="1rem">
+          <NameAndDateContainer>
+            <Typography name="heading3" fontWeight={700}>
+              {name}
+            </Typography>
 
-          <Typography> {JSON.stringify(date)}</Typography>
-        </NameAndDateContainer>
+            <Typography> {JSON.stringify(date)}</Typography>
+          </NameAndDateContainer>
 
-        <Typography>{comment}</Typography>
+          <Typography>{comment}</Typography>
 
-        <EditButtonContainer>
-          {depth > 0 && (
+          <EditButtonContainer>
+            {depth > 0 && (
+              <TextButton
+                onClick={() => {
+                  setIsReplyEnabled((prev) => !prev);
+                  setIsEditEnabled(false);
+                }}
+              >
+                {isReplyEnabled ? "Cancle" : "Reply"}
+              </TextButton>
+            )}
+
             <TextButton
               onClick={() => {
-                setIsReplyEnabled((prev) => !prev);
-                setIsEditEnabled(false);
+                setIsEditEnabled((prev) => !prev);
+                setIsReplyEnabled(false);
               }}
             >
-              {isReplyEnabled ? "Cancle" : "Reply"}
+              {isEditEnabled ? "Cancle" : "Edit"}
             </TextButton>
-          )}
-
-          <TextButton
-            onClick={() => {
-              setIsEditEnabled((prev) => !prev);
-              setIsReplyEnabled(false);
-            }}
-          >
-            {isEditEnabled ? "Cancle" : "Edit"}
-          </TextButton>
-        </EditButtonContainer>
+          </EditButtonContainer>
+        </Stack>
 
         <DeleteButtonContainer>
           <IconButton onClick={() => handleDeleteComment(id)}>
