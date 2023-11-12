@@ -8,13 +8,13 @@ const disabledCssRulesCss = css `
 `;
 const TextAreaInputSizeStyles = theme('size', {
     small: css `
-    min-inline-size: 40rem;
+    /* min-inline-size: 40rem; */
   `,
     medium: css `
-    min-inline-size: 50rem;
+    /* min-inline-size: 50rem; */
   `,
     large: css `
-    min-inline-size: 60rem;
+    /* min-inline-size: 60rem; */
   `,
 });
 export const TextAreaInputStyled = styled.textarea `
@@ -23,6 +23,7 @@ export const TextAreaInputStyled = styled.textarea `
   resize: none;
   padding:  0.8rem 1.6rem;
   overflow: hidden;
+
   outline: ${({ isDefaultOutlineVisible }) => isDefaultOutlineVisible ? '1px solid var(--color-lightGray)' : 'none'};
   background-color: ${({ hasError }) => hasError ? 'var( --color-snow)' : 'var(--color-white)'};
 

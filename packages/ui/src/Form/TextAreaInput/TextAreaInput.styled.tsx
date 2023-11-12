@@ -19,13 +19,13 @@ const disabledCssRulesCss = css`
 
 const TextAreaInputSizeStyles = theme('size', {
   small: css`
-    min-inline-size: 40rem;
+    /* min-inline-size: 40rem; */
   `,
   medium: css`
-    min-inline-size: 50rem;
+    /* min-inline-size: 50rem; */
   `,
   large: css`
-    min-inline-size: 60rem;
+    /* min-inline-size: 60rem; */
   `,
 });
 
