@@ -53,7 +53,7 @@ export function AddOrUpdateComment({
 
           <TextAreaField
             control={control}
-            placeholder="comment"
+            placeholder={title}
             name="comment"
             rules={{ required: "This is required." }}
           />

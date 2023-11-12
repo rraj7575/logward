@@ -1,4 +1,5 @@
 import { useState } from "react";
+import format from "date-fns/format";
 import { IconButton, TextButton, Typography } from "ui";
 import { AddOrUpdateComment } from "./AddOrUpdateComment";
 import {
@@ -42,7 +43,7 @@ export function Comment({
               {name}
             </Typography>
 
-            <Typography> {JSON.stringify(date)}</Typography>
+            <Typography>{format(new Date(date), "do MMM yyyy")}</Typography>
           </NameAndDateContainer>
 
           <Typography>{comment}</Typography>
@@ -96,7 +97,7 @@ export function Comment({
         {isReplyEnabled && (
           <ChildCommentContainer>
             <AddOrUpdateComment
-              addComment={(commentId: any, formDate: any) => {
+              handleCommentSubmit={(commentId: any, formDate: any) => {
                 handleAddComment(commentId, formDate);
                 setIsReplyEnabled(false);
               }}

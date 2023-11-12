@@ -35,6 +35,7 @@ export const TextAreaInputStyled = styled.textarea<TextAreaInputStyledProps>`
   resize: none;
   padding:  0.8rem 1.6rem;
   overflow: hidden;
+
   outline: ${({ isDefaultOutlineVisible }) =>
     isDefaultOutlineVisible ? '1px solid var(--color-lightGray)' : 'none'};
   background-color: ${({ hasError }) =>
