@@ -1,18 +1,34 @@
 import { useEffect, useState } from "react";
-import { useComment } from "../../hooks/useComment";
+import { AiOutlineArrowDown, AiOutlineArrowUp } from "react-icons/ai";
 import { AddOrUpdateComment } from "./AddOrUpdateComment";
 import { Comment } from "./Comment";
-import { AddCommentAndComments, CommentsContainer } from "./Index.styled";
+import {
+  AddCommentAndComments,
+  ChildrenRightContainer,
+  CommentsContainer,
+  SortByDateContainer,
+} from "./Index.styled";
+
 import { INITIAL_STATE } from "./constant";
+import {
+  deleteComment,
+  editComment,
+  addComment,
+  sortByDateAdded,
+} from "../../utils/commentHelper";
+
 import type { CommentDetails, CommentType } from "./types";
+import { Inline } from "@bedrock-layout/primitives";
 
 export default function Comments() {
+  const [isAssendingOrder, setIsAssendingOrder] = useState(true);
+
   const [comments, setComments] = useState<CommentDetails>(() => {
     const savedComments = localStorage.getItem("comments");
-    return savedComments ? JSON.parse(savedComments) : INITIAL_STATE;
+    return savedComments
+      ? sortByDateAdded(JSON.parse(savedComments), true)
+      : INITIAL_STATE;
   });
-
-  const { deleteComment, editComment, addComment } = useComment();
 
   useEffect(() => {
     localStorage.setItem("comments", JSON.stringify(comments));
@@ -48,18 +64,43 @@ export default function Comments() {
     setComments(newComments);
   };
 
+  const handleClickSort = () => {
+    let sortedComments = sortByDateAdded(
+      structuredClone(comments),
+      !isAssendingOrder
+    );
+
+    setComments(sortedComments);
+    setIsAssendingOrder((prev) => !prev);
+  };
+
   const { items } = comments;
 
   return (
     <CommentsContainer>
       <AddCommentAndComments gutter="1rem">
         <AddOrUpdateComment
-          addComment={handleAddComment}
+          handleCommentSubmit={handleAddComment}
           commentId={INITIAL_STATE.id}
           mode="add"
           commentDetails={INITIAL_STATE}
           title="Comment"
         />
+
+        {items.length > 0 && (
+          <ChildrenRightContainer>
+            <SortByDateContainer>
+              <Inline onClick={handleClickSort}>
+                Sort By: Date and Time
+                {isAssendingOrder ? (
+                  <AiOutlineArrowUp size={20} />
+                ) : (
+                  <AiOutlineArrowDown size={20} />
+                )}
+              </Inline>
+            </SortByDateContainer>
+          </ChildrenRightContainer>
+        )}
 
         {items.map((commentDetails) => {
           const { id } = commentDetails;

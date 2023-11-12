@@ -2,12 +2,12 @@ import { Stack } from "@bedrock-layout/primitives";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { Button, TextAreaField, TextField, Typography } from "ui";
-import { AddCommentContainer, ButtonContainer } from "./Index.styled";
+import { AddCommentContainer, ChildrenRightContainer } from "./Index.styled";
 import { MODE } from "./constant";
 import type { CommentType } from "./types";
 
 export function AddOrUpdateComment({
-  addComment,
+  handleCommentSubmit,
   commentDetails,
   mode,
   title,
@@ -29,7 +29,7 @@ export function AddOrUpdateComment({
   }, []);
 
   const onSubmit = (formDate: any) => {
-    addComment(commentId, formDate);
+    handleCommentSubmit(commentId, formDate);
 
     setValue("name", "");
     setValue("comment", "");
@@ -58,12 +58,12 @@ export function AddOrUpdateComment({
             rules={{ required: "This is required." }}
           />
 
-          <ButtonContainer>
+          <ChildrenRightContainer>
             <Button
               label={mode === MODE.add ? "POST" : "UPDATE"}
               type="submit"
             />
-          </ButtonContainer>
+          </ChildrenRightContainer>
         </Stack>
       </form>
     </AddCommentContainer>

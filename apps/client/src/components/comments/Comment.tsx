@@ -5,14 +5,13 @@ import {
   ChildCommentContainer,
   CommentContainer,
   DeleteButtonContainer,
-  EditButtonContainer,
   NameAndDateContainer,
 } from "./Index.styled";
 import { AiFillDelete } from "react-icons/ai";
 import { MODE } from "./constant";
 
 import type { CommentDetails, CommentType } from "./types";
-import { Stack } from "@bedrock-layout/primitives";
+import { Inline, Stack } from "@bedrock-layout/primitives";
 
 export type CommentProps = {
   commentDetails: CommentDetails;
@@ -35,7 +34,7 @@ export function Comment({
   const { comment, name, date, id, items } = commentDetails;
 
   return (
-    <>
+    <div>
       <CommentContainer>
         <Stack gutter="1rem">
           <NameAndDateContainer>
@@ -48,7 +47,7 @@ export function Comment({
 
           <Typography>{comment}</Typography>
 
-          <EditButtonContainer>
+          <Inline gutter="1rem">
             {depth > 0 && (
               <TextButton
                 onClick={() => {
@@ -68,7 +67,7 @@ export function Comment({
             >
               {isEditEnabled ? "Cancle" : "Edit"}
             </TextButton>
-          </EditButtonContainer>
+          </Inline>
         </Stack>
 
         <DeleteButtonContainer>
@@ -79,48 +78,51 @@ export function Comment({
       </CommentContainer>
 
       {isEditEnabled && (
-        <ChildCommentContainer>
-          <AddOrUpdateComment
-            addComment={(commentId: any, formDate: any) => {
-              handleEditComment(commentId, formDate);
-              setIsEditEnabled(false);
-            }}
-            commentDetails={commentDetails}
-            mode={MODE.edit}
-            title="Edit"
-          />
-        </ChildCommentContainer>
+        <AddOrUpdateComment
+          handleCommentSubmit={(commentId: any, formDate: any) => {
+            handleEditComment(commentId, formDate);
+            setIsEditEnabled(false);
+          }}
+          commentDetails={commentDetails}
+          mode={MODE.edit}
+          title="Edit"
+        />
       )}
 
-      {isReplyEnabled && (
-        <ChildCommentContainer>
-          <AddOrUpdateComment
-            addComment={(commentId: any, formDate: any) => {
-              handleAddComment(commentId, formDate);
-              setIsReplyEnabled(false);
-            }}
-            commentDetails={commentDetails}
-            mode={MODE.add}
-            title="Reply"
-          />
-        </ChildCommentContainer>
-      )}
-
-      {items.map((commentDetails) => {
-        const { id } = commentDetails;
-
-        return (
-          <ChildCommentContainer key={id}>
-            <Comment
+      <Stack
+        gutter="2rem"
+        style={{ marginTop: items.length > 0 || isReplyEnabled ? "1rem" : 0 }}
+      >
+        {isReplyEnabled && (
+          <ChildCommentContainer>
+            <AddOrUpdateComment
+              addComment={(commentId: any, formDate: any) => {
+                handleAddComment(commentId, formDate);
+                setIsReplyEnabled(false);
+              }}
               commentDetails={commentDetails}
-              depth={--depth}
-              handleAddComment={handleAddComment}
-              handleDeleteComment={handleDeleteComment}
-              handleEditComment={handleEditComment}
+              mode={MODE.add}
+              title="Reply"
             />
           </ChildCommentContainer>
-        );
-      })}
-    </>
+        )}
+
+        {items.map((commentDetails) => {
+          const { id } = commentDetails;
+
+          return (
+            <ChildCommentContainer key={id}>
+              <Comment
+                commentDetails={commentDetails}
+                depth={--depth}
+                handleAddComment={handleAddComment}
+                handleDeleteComment={handleDeleteComment}
+                handleEditComment={handleEditComment}
+              />
+            </ChildCommentContainer>
+          );
+        })}
+      </Stack>
+    </div>
   );
 }
