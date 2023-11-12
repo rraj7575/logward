@@ -16,5 +16,9 @@ export const Paddings = createGlobalStyle `
         --padding-inputSmallVertical: .56em;
 
         --padding-inputWithIconSmallHorizontal: 2em;
+
+        /** Content padding */ 
+        --padding-contentVertical: 2em;
+    
     }
 `;
