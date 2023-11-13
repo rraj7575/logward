@@ -61,5 +61,6 @@ export const Colors = createGlobalStyle`
     --color-whiteIce: #E7F6F5;
     --color-whiteSmoke: #EFEFEF;
     --color-amour: #FCF5FA;
+    --color-comment-Background: #848484;
   }
 `;

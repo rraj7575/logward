@@ -20,6 +20,6 @@ export const Paddings = createGlobalStyle`
 
         /** Content padding */ 
         --padding-contentVertical: 2em;
-    
+        --padding-commentHorizontalPadding: 1.5rem
     }
 `;

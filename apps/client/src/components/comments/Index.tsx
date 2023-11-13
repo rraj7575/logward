@@ -14,7 +14,7 @@ import {
   deleteComment,
   editComment,
   addComment,
-  sortByDateAdded,
+  sortByDateAndTime,
 } from "../../utils/commentHelper";
 
 import type { CommentDetails, CommentType } from "./types";
@@ -26,7 +26,7 @@ export default function Comments() {
   const [comments, setComments] = useState<CommentDetails>(() => {
     const savedComments = localStorage.getItem("comments");
     return savedComments
-      ? sortByDateAdded(JSON.parse(savedComments), true)
+      ? sortByDateAndTime(JSON.parse(savedComments), true)
       : INITIAL_STATE;
   });
 
@@ -38,11 +38,8 @@ export default function Comments() {
     commentId: number,
     newCommentDetails: CommentType
   ) => {
-    const newComments = addComment(
-      structuredClone(comments),
-      commentId,
-      newCommentDetails
-    );
+    const newComments = addComment(comments, commentId, newCommentDetails);
+
     setComments(newComments);
   };
 
@@ -50,12 +47,7 @@ export default function Comments() {
     commentId: number,
     commentDetails: CommentType
   ) => {
-    const updatedComments = editComment(
-      structuredClone(comments),
-      commentId,
-      commentDetails
-    );
-
+    const updatedComments = editComment(comments, commentId, commentDetails);
     setComments(updatedComments);
   };
 
@@ -65,11 +57,7 @@ export default function Comments() {
   };
 
   const handleClickSort = () => {
-    let sortedComments = sortByDateAdded(
-      structuredClone(comments),
-      !isAssendingOrder
-    );
-
+    let sortedComments = sortByDateAndTime(comments, !isAssendingOrder);
     setComments(sortedComments);
     setIsAssendingOrder((prev) => !prev);
   };

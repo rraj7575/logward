@@ -1,6 +1,6 @@
 import { useState } from "react";
 import format from "date-fns/format";
-import { IconButton, TextButton, Typography } from "ui";
+import { TextButton, Typography } from "ui";
 import { AddOrUpdateComment } from "./AddOrUpdateComment";
 import {
   ChildCommentContainer,
@@ -8,7 +8,7 @@ import {
   DeleteButtonContainer,
   NameAndDateContainer,
 } from "./Index.styled";
-import { AiFillDelete } from "react-icons/ai";
+import { RiDeleteBin5Line } from "react-icons/ri";
 import { MODE } from "./constant";
 
 import type { CommentDetails, CommentType } from "./types";
@@ -71,10 +71,8 @@ export function Comment({
           </Inline>
         </Stack>
 
-        <DeleteButtonContainer>
-          <IconButton onClick={() => handleDeleteComment(id)}>
-            <AiFillDelete size={20} />
-          </IconButton>
+        <DeleteButtonContainer onClick={() => handleDeleteComment(id)}>
+          <RiDeleteBin5Line size={15} color="var(--color-white)" />
         </DeleteButtonContainer>
       </CommentContainer>
 

@@ -1,6 +1,5 @@
 import { Inline, Stack } from "@bedrock-layout/primitives";
 import styled from "styled-components";
-import { Typography } from "ui";
 
 export const CommentsContainer = styled(Inline)`
   min-height: 100%;
@@ -11,6 +10,7 @@ export const CommentsContainer = styled(Inline)`
 export const AddCommentAndComments = styled(Stack)`
   padding: 2rem 0;
   width: 40%;
+  border-radius: 0.5rem;
 `;
 
 export const ChildrenRightContainer = styled(Inline)`
@@ -21,7 +21,8 @@ export const ChildrenRightContainer = styled(Inline)`
 export const CommentContainer = styled.div`
   position: relative;
   background-color: var(--color-solitudeSecondary);
-  padding: 1rem 1.5rem;
+  padding: 1rem var(--padding-commentHorizontalPadding);
+  border-radius: 0.5rem;
 `;
 
 export const NameAndDateContainer = styled(Inline)`
@@ -33,17 +34,21 @@ export const DeleteButtonContainer = styled.div`
   top: 50%;
   right: 0;
   transform: translate(50%, -50%);
+  background-color: var(--color-comment-Background);
+  border-radius: 50%;
+  padding: 0.6rem;
+  cursor: pointer;
 `;
 
 export const AddCommentContainer = styled.div`
   background-color: var(--color-solitudeSecondary);
-  padding: 1.5rem;
+  padding: var(--padding-commentHorizontalPadding);
 `;
 
 export const ChildCommentContainer = styled.div`
   padding-left: 6.5rem;
 `;
 
-export const SortByDateContainer = styled(Typography)`
-  padding-right: 2rem;
+export const SortByDateContainer = styled.div`
+  padding-right: var(--padding-commentHorizontalPadding);
 `;

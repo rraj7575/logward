@@ -2,16 +2,16 @@ import type { CommentDetails, CommentType } from "../components/comments/types";
 
 const addComment = (
   comments: CommentDetails,
-  commentId: number,
+  parentCommentId: number,
   newCommentDetails: CommentType
 ): CommentDetails => {
   const { name, comment } = newCommentDetails;
   const { id, items } = comments;
 
-  if (id === commentId) {
+  if (id === parentCommentId) {
+    const childCommentsOfCurrentParent = [...items];
     const date = new Date();
-
-    items.unshift({
+    childCommentsOfCurrentParent.unshift({
       comment,
       date,
       id: date.getTime(),
@@ -19,11 +19,11 @@ const addComment = (
       items: [],
     });
 
-    return comments;
+    return { ...comments, items: childCommentsOfCurrentParent };
   }
 
   const childComments = items.map((commentDetails) => {
-    return addComment(commentDetails, commentId, newCommentDetails);
+    return addComment(commentDetails, parentCommentId, newCommentDetails);
   });
 
   return { ...comments, items: childComments };
@@ -37,8 +37,7 @@ const editComment = (
   const { comment } = newCommentDetails;
 
   if (comments.id === commentId) {
-    comments.comment = comment;
-    return comments;
+    return { ...comments, comment };
   }
 
   const childComments = comments.items.map((commentDetails) => {
@@ -64,24 +63,30 @@ const deleteComment = (comments: CommentDetails, id: number) => {
   return comments;
 };
 
-const sortByDateAdded = (comments: CommentDetails, isAssending: boolean) => {
+const sortByDateAndTime = (
+  comments: CommentDetails,
+  isAssending: boolean,
+  depth: number = 0
+): CommentDetails => {
   const { items } = comments;
 
   if (items.length === 0) {
     return comments;
   }
 
+  let childComments = [...items];
+
   if (isAssending) {
-    items.sort((comment1, comment2) => comment2.id - comment1.id);
+    childComments.sort((comment1, comment2) => comment2.id - comment1.id);
   } else {
-    items.sort((comment1, comment2) => comment1.id - comment2.id);
+    childComments.sort((comment1, comment2) => comment1.id - comment2.id);
   }
 
-  items.forEach((item) => {
-    sortByDateAdded(item, isAssending);
+  childComments = childComments.map((item) => {
+    return sortByDateAndTime(item, isAssending, depth);
   });
 
-  return comments;
+  return { ...comments, items: childComments };
 };
 
-export { addComment, editComment, deleteComment, sortByDateAdded };
+export { addComment, editComment, deleteComment, sortByDateAndTime };
