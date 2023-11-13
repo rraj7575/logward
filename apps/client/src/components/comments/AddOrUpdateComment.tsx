@@ -44,7 +44,7 @@ export function AddOrUpdateComment({
           {mode === MODE.add && (
             <TextField
               control={control}
-              placeholder="name"
+              placeholder="Name"
               name="name"
               showErrorIcon={false}
               rules={{ required: "This is required." }}

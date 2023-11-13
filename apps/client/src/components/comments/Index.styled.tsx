@@ -31,8 +31,8 @@ export const NameAndDateContainer = styled(Inline)`
 export const DeleteButtonContainer = styled.div`
   position: absolute;
   top: 50%;
-  bottom: 50%;
-  right: -1rem;
+  right: 0;
+  transform: translate(50%, -50%);
 `;
 
 export const AddCommentContainer = styled.div`

@@ -24,5 +24,5 @@ export declare const TextAreaInput: import("react").ForwardRefExoticComponent<Pa
     rows?: number | undefined;
     isDefaultOutlineVisible?: boolean | undefined;
     isShowingEllipsis?: boolean | undefined;
-} & import("react").RefAttributes<unknown>>;
+} & import("react").RefAttributes<HTMLInputElement>>;
 //# sourceMappingURL=TextAreaInput.d.ts.map

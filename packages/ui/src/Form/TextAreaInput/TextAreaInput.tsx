@@ -1,5 +1,5 @@
 import _isNil from 'lodash/isNil';
-import { forwardRef, useRef } from 'react';
+import { forwardRef, Ref, useRef } from 'react';
 import type { ControllerRenderProps } from 'react-hook-form';
 import { ThemeProvider } from 'styled-components';
 
@@ -37,6 +37,7 @@ export const TextAreaInput = forwardRef(
       isDefaultOutlineVisible = true,
       isShowingEllipsis = false,
     }: TextAreaInputProps,
+     ref: Ref<HTMLTextAreaElement>
   ) => {
     const textAreaRef = useRef<HTMLTextAreaElement>(null);
 
