@@ -1,5 +1,6 @@
 import _isNil from 'lodash/isNil';
-import { forwardRef, Ref, useRef } from 'react';
+import { forwardRef } from 'react';
+import type { Ref } from 'react';
 import type { ControllerRenderProps } from 'react-hook-form';
 import { ThemeProvider } from 'styled-components';
 
@@ -39,7 +40,6 @@ export const TextAreaInput = forwardRef(
     }: TextAreaInputProps,
      ref: Ref<HTMLTextAreaElement>
   ) => {
-    const textAreaRef = useRef<HTMLTextAreaElement>(null);
 
     return (
       <ThemeProvider theme={{ size }}>
@@ -48,22 +48,14 @@ export const TextAreaInput = forwardRef(
           name={name}
           onChange={onChange}
           onFocus={onFocus}
+          onBlur={onBlur}
           autoFocus={autoFocus}
-          onBlur={() => {
-            if (typeof onBlur === 'function') {
-              onBlur();
-            }
-
-            if (!_isNil(textAreaRef.current)) {
-              textAreaRef.current.scrollTop = 0;
-            }
-          }}
           placeholder={placeholder}
           hasError={hasError}
           size={size}
           rows={rows}
           disabled={disabled}
-          ref={textAreaRef}
+          ref={ref}
           isDefaultOutlineVisible={isDefaultOutlineVisible}
           isShowingEllipsis={isShowingEllipsis}
         />

@@ -7,7 +7,7 @@ import {
   CommentContainer,
   DeleteButtonContainer,
   NameAndDateContainer,
-} from "./Index.styled";
+} from "./commentList.styled";
 import { RiDeleteBin5Line } from "react-icons/ri";
 import { MODE } from "./constant";
 

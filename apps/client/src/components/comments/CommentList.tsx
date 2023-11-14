@@ -7,7 +7,7 @@ import {
   ChildrenRightContainer,
   CommentsContainer,
   SortByDateContainer,
-} from "./Index.styled";
+} from "./commentList.styled";
 
 import { INITIAL_STATE } from "./constant";
 import {
@@ -20,7 +20,7 @@ import {
 import type { CommentDetails, CommentType } from "./types";
 import { Inline } from "@bedrock-layout/primitives";
 
-export default function Comments() {
+export function CommentList() {
   const [isAssendingOrder, setIsAssendingOrder] = useState(true);
 
   const [comments, setComments] = useState<CommentDetails>(() => {

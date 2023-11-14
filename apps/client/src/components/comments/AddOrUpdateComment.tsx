@@ -2,7 +2,7 @@ import { Stack } from "@bedrock-layout/primitives";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { Button, TextAreaField, TextField, Typography } from "ui";
-import { AddCommentContainer, ChildrenRightContainer } from "./Index.styled";
+import { AddCommentContainer, ChildrenRightContainer } from "./commentList.styled";
 import { MODE } from "./constant";
 import type { CommentType } from "./types";
 
