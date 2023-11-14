@@ -1,6 +1,6 @@
-import type { CommentDetails, MODE_TYPE } from "./types";
+import type { CommentDetails } from "./types";
 
-export const MODE: MODE_TYPE = {
+export const MODE = {
   add: "add",
   edit: "edit",
 };
@@ -11,4 +11,8 @@ export const INITIAL_STATE: CommentDetails = {
   date: new Date(),
   name: "",
   comment: "",
+};
+
+export const ERROR_MESSAGE = {
+  requiredField: "This field is required.",
 };

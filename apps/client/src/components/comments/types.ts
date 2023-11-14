@@ -8,8 +8,3 @@ export type CommentDetails = CommentType & {
   id: number;
   items: CommentDetails[];
 };
-
-export type MODE_TYPE = {
-  add: "add";
-  edit: "edit";
-};

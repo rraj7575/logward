@@ -2,16 +2,26 @@ import { Stack } from "@bedrock-layout/primitives";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { Button, TextAreaField, TextField, Typography } from "ui";
-import { AddCommentContainer, ChildrenRightContainer } from "./commentList.styled";
-import { MODE } from "./constant";
-import type { CommentType } from "./types";
+import {
+  AddCommentContainer,
+  ChildrenRightContainer,
+} from "./commentList.styled";
+import { MODE, ERROR_MESSAGE } from "./constant";
+import type { CommentDetails, CommentType } from "./types";
+
+type AddOrUpdateCommentProps = {
+  handleCommentSubmit: (commentId: number, formDate: any) => void;
+  commentDetails: CommentDetails;
+  mode: string;
+  title: string;
+};
 
 export function AddOrUpdateComment({
   handleCommentSubmit,
   commentDetails,
   mode,
   title,
-}: any) {
+}: AddOrUpdateCommentProps) {
   const { control, handleSubmit, setValue } = useForm<CommentType>({
     defaultValues: {
       name: "",
@@ -47,7 +57,7 @@ export function AddOrUpdateComment({
               placeholder="Name"
               name="name"
               showErrorIcon={false}
-              rules={{ required: "This is required." }}
+              rules={{ required: ERROR_MESSAGE.requiredField }}
             />
           )}
 
@@ -55,7 +65,7 @@ export function AddOrUpdateComment({
             control={control}
             placeholder={title}
             name="comment"
-            rules={{ required: "This is required." }}
+            rules={{ required: ERROR_MESSAGE.requiredField }}
           />
 
           <ChildrenRightContainer>

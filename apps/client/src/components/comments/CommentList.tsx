@@ -38,27 +38,30 @@ export function CommentList() {
     commentId: number,
     newCommentDetails: CommentType
   ) => {
-    const newComments = addComment(comments, commentId, newCommentDetails);
-
-    setComments(newComments);
+    setComments((prevComments) =>
+      addComment(prevComments, commentId, newCommentDetails)
+    );
   };
 
   const handleEditComment = (
     commentId: number,
     commentDetails: CommentType
   ) => {
-    const updatedComments = editComment(comments, commentId, commentDetails);
-    setComments(updatedComments);
+    setComments((preComments) =>
+      editComment(preComments, commentId, commentDetails)
+    );
   };
 
   const handleDeleteComment = (commentId: number) => {
-    let newComments = deleteComment(structuredClone(comments), commentId);
-    setComments(newComments);
+    setComments((preComments) =>
+      deleteComment(structuredClone(preComments), commentId)
+    );
   };
 
   const handleClickSort = () => {
-    let sortedComments = sortByDateAndTime(comments, !isAssendingOrder);
-    setComments(sortedComments);
+    setComments((prevComments) =>
+      sortByDateAndTime(prevComments, !isAssendingOrder)
+    );
     setIsAssendingOrder((prev) => !prev);
   };
 
@@ -69,7 +72,6 @@ export function CommentList() {
       <AddCommentAndComments gutter="1rem">
         <AddOrUpdateComment
           handleCommentSubmit={handleAddComment}
-          commentId={INITIAL_STATE.id}
           mode="add"
           commentDetails={INITIAL_STATE}
           title="Comment"
